@@ -20,8 +20,18 @@
   </ul>
 </nav>
   <router-view/>
+  <div class="footer">
+  <Footer/>
+  </div>
   </div>
 </template>
+
+<script>
+import Footer from './components/Footer.vue' 
+export default {
+  components: { Footer }
+}
+</script>
 
 <style>
 body {
@@ -34,6 +44,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-bottom: 18rem;
 }
 
 nav {
@@ -48,6 +59,16 @@ nav a {
 
 #addLogo {
   max-width: 30px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
 }
 
 /* nav a.router-link-exact-active {
