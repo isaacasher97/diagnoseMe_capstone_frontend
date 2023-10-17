@@ -1,7 +1,7 @@
 <template>
 <div id="app">
 <nav>
-  <ul class="nav nav-tabs">
+  <ul id="nav-container" class="nav nav-tabs">
     <li class="nav-item">
       <a class="nav-link" aria-current="page" href="/">Home</a>
     </li>
@@ -12,7 +12,13 @@
       <a class="nav-link" href="https://book.zocdoc.com/get-started?utm_source=google&utm_medium=cpc_brand&utm_campaign=10439133071&utm_term=zocdoc_e&utm_content=102297848623&gclid=Cj0KCQjwm66pBhDQARIsALIR2zADJLNP-jUChyWpkkpcDKEWVmzfmfxTd3ymfKexB9whj9iQDSuqGbcaAkWcEALw_wcB" target="_blank">Find A Doctor</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Diagnose Me</a>
+      <a class="nav-link" href="/diagnoseme">Diagnose Me</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/diagnosisblog">Diagnosis Blog</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/adddiagnosis"><img id="addLogo" src="../public/imgs/healthcare.png"></a>
     </li>
   </ul>
 </nav>
@@ -41,6 +47,10 @@ nav {
 nav a {
   font-weight: bold;
   color: white;
+}
+
+#addLogo {
+  max-width: 30px;
 }
 
 /* nav a.router-link-exact-active {
