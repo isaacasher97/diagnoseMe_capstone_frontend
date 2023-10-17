@@ -4,6 +4,7 @@ import AboutView from '../views/AboutView.vue'
 import DiagnoseMeView from '../views/DiagnoseMeView.vue'
 import DiagnosisBlogView from '../views/DiagnosisBlogView.vue'
 import AddDiagnosisView from '../views/AddDiagnosisView.vue'
+import Blog from '../views/Blog.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/adddiagnosis',
     name: 'adddiagnosis',
     component: AddDiagnosisView
+  },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: Blog
   }
 ]
 

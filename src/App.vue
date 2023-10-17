@@ -20,6 +20,9 @@
     <li class="nav-item">
       <a class="nav-link" href="/adddiagnosis"><img id="addLogo" src="../public/imgs/healthcare.png"></a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/blog">Blog</a>
+    </li>
   </ul>
 </nav>
   <router-view/>
