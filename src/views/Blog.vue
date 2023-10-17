@@ -1,5 +1,30 @@
 <template>
 <div id="blog-container">
+  <div v-if="Object.keys(this.currentDiagnosis).length !==0">
+     <!-- Edit A Diagnosis -->
+    <div class="edit-diagnosis">
+    <h2>Edit Diagnosis</h2>
+    <form @submit.prevent="updateBlog(currentDiagnosis.id)">
+      <label for="age">
+        Age: <input type="number" id="age" placeholder="Age of patient" v-model="currentDiagnosis.age"> 
+      </label>
+      <label for="name">
+        Name: <input type="text" id="name" placeholder="Name Of Diagnosis" autocomplete="true" v-model="currentDiagnosis.name">
+      </label>
+      <label for="practiceType">
+        Practice: <input type="text" id="practiceType" placeholder="Enter Practice Type" v-model="currentDiagnosis.practiceType">
+      </label>
+      <label for="specialist">
+        Specialist: <input type="text" id="specialist" placeholder="Enter specialist type" v-model="currentDiagnosis.specialist">
+      </label>
+      <label for="description">
+        Description: <textarea type="text" id="description" placeholder="Describe diagnosis" v-model="currentDiagnosis.description" />
+      </label>
+      <input type="submit" value="Update">
+    </form>
+    </div>
+  </div>
+  <div v-else>
   <!-- Create A Diagnosis -->
   <div class="create-diagnosis">
     <h2>Create Diagnosis</h2>
@@ -22,6 +47,7 @@
       <input type="submit" value="Create Post">
     </form>
   </div>
+  </div>
   <!-- List of diagnoses -->
   <div class="posts-table">
     <h1>Latest Diagnoses</h1>
@@ -42,19 +68,12 @@
           <td>{{ item.specialist }}</td>
           <td>{{ item.description }}</td>
           <td>
-            <button>Edit</button>
-            <button>Delete</button>
+            <a href="#" class="edit" title=""><button class="btn btn-warning btn-sm" @click="editBtn(item.id)">Edit</button></a>
+            <a href="#" class="edit ml-1" title=""><button class="btn btn-danger btn-sm" @click="deleteBlog(item.id)">Delete</button></a>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
-  <!-- Edit A Diagnosis -->
-  <div class="edit-diagnosis">
-    <h2>Edit A Diagnosis</h2>
-    <form>
-      
-    </form>
   </div>
 </div>
 </template>
@@ -107,7 +126,38 @@ export default {
       ).catch(error => {
         console.log(error)
       })
-    }
+    },
+    editBtn(id) {
+      console.log(id);
+      this.diagnoses.map(diagnosis => {
+        if(diagnosis.id === id ) {
+          console.log(diagnosis.name)
+          this.currentDiagnosis = { 'id': diagnosis.id, 'age': diagnosis.age, 'name': diagnosis.name, 'practiceType': diagnosis.practiceType, 'specialist': diagnosis.specialist, 'description': diagnosis.description }
+          
+        }
+      })
+    },
+    updateBlog(id){
+      axios.put(this.api + `${id}/`, this.currentDiagnosis).then(
+        response => {
+          console.log(response.data)
+          this.getBlog()
+          this.currentDiagnosis = {}
+        }
+      ).catch(error => {
+        console.log(error)
+      })
+    },
+    deleteBlog(id){
+      axios.delete(this.api + `${id}/`, id).then(
+        response => {
+          console.log(response.data)
+          this.getBlog()
+        }
+      ).catch(error => {
+        console.log(error)
+      })
+    },
   }
 }
 </script>
