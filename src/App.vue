@@ -15,13 +15,7 @@
       <a class="nav-link" href="/diagnoseme">Diagnose Me</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/diagnosisblog">Diagnosis Blog</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/adddiagnosis"><img id="addLogo" src="../public/imgs/healthcare.png"></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/blog">Blog</a>
+      <a class="nav-link" href="/blog">Diagnoses ➕</a>
     </li>
   </ul>
 </nav>
