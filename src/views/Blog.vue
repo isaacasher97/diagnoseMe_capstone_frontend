@@ -82,6 +82,14 @@
       <img style="width: 50px;" src="../../public/imgs/icons8-loading.gif">
     </div>
   </div>
+  <!-- Delete Confirmation Dialog -->
+    <div v-if="showDeleteConfirmation" class="custom-alert delete-confirmation">
+      <div class="message">Are you sure you want to delete this diagnosis?</div>
+      <div class="actions">
+        <button class="bn53 confirm" @click="confirmDelete">Yes</button>
+        <button class="bn53 cancel" @click="cancelDelete">No</button>
+      </div>
+    </div>
 </div>
 </template>
 
@@ -95,6 +103,8 @@ export default {
       'currentDiagnosis': {},
       'api': 'https://diagnose-me-backend.onrender.com/diagnosis/',
       'diagnosed': null,
+      'showDeleteConfirmation': false,
+      'diagnosisToDeleteId': null,
       'diagnosis': {
         'name': '',
         'age': '',
@@ -159,18 +169,47 @@ export default {
         console.log(error)
       })
     },
-    deleteBlog(id){
-      axios.delete(this.api + `${id}/`, id).then(
-        response => {
-          console.log(response.data)
-          this.getBlog()
-        }
-      ).catch(error => {
-        console.log(error)
-      })
+    deleteBlog(id) {
+      if (window.confirm('Are you sure you want to delete this diagnosis?')) {
+        axios
+          .delete(this.api + `${id}/`, id)
+          .then((response) => {
+            console.log(response.data);
+            this.getBlog();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      // If the user clicks "Cancel" in the confirmation dialog, no action will be taken.
     },
     goBack() {
       return this.$router.go(-1)
+    },
+    deleteBlog(id) {
+      this.showDeleteConfirmation = true;
+      this.diagnosisToDeleteId = id;
+    },
+
+    confirmDelete() {
+      axios
+        .delete(this.api + `${this.diagnosisToDeleteId}/`, this.diagnosisToDeleteId)
+        .then((response) => {
+          console.log(response.data);
+          this.getBlog();
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.showDeleteConfirmation = false;
+          this.diagnosisToDeleteId = null;
+        });
+    },
+
+    cancelDelete() {
+      this.showDeleteConfirmation = false;
+      this.diagnosisToDeleteId = null;
     },
   }
 }
@@ -262,4 +301,45 @@ label {
 .bn30:hover .text {
   background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
 }
+ .delete-confirmation {
+    background-color: #1b2845;
+    background-image: linear-gradient(315deg, #1b2845 0%, #274060 74%);
+    color: antiquewhite;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .delete-confirmation .message {
+    font-size: 16px;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .delete-confirmation .actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .delete-confirmation button {
+    margin: 0 10px;
+  }
+
+  .delete-confirmation button.confirm {
+    background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  }
+
+  .delete-confirmation button.cancel {
+    background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+  }
+
+  .delete-confirmation button.confirm:hover {
+    box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+  }
+
+  .delete-confirmation button.cancel:hover {
+    box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+  }
+
 </style>
