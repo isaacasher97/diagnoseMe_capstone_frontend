@@ -68,8 +68,8 @@
           <td>{{ item.specialist }}</td>
           <td>{{ item.description }}</td>
           <td>
-            <a href="#" class="edit" title=""><button class="btn btn-warning btn-sm" @click="editBtn(item.id)">Edit</button></a>
-            <a href="#" class="edit ml-1" title=""><button class="btn btn-danger btn-sm" @click="deleteBlog(item.id)">Delete</button></a>
+            <a href="#" class="edit" title=""><button class="btn btn-warning btn-sm" @click="editBtn(item.id)"><img style="width: 30px;" src="../../public/imgs/icons8-edit.gif"></button></a>
+            <a href="#" class="edit ml-1" title=""><button class="btn btn-danger btn-sm" @click="deleteBlog(item.id)"><img style="width: 30px;" src="../../public/imgs/icons8-trash.gif"></button></a>
           </td>
         </tr>
       </tbody>

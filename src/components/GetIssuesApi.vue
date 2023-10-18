@@ -16,7 +16,6 @@
         <button class="bn5" @click="searchDiagnosis">Search</button>
       </div>
 
-      <!-- Add v-if to hide the table by default -->
       <table class="table" v-if="searchClicked">
         <thead class="table-light">
           <th>ID</th>
@@ -24,6 +23,7 @@
           <th>Diagnosis</th>
           <th>Specialisation</th>
           <th>Accuracy</th>
+          <th>Action</th> <!-- New column for the copy button -->
         </thead>
         <tbody class="reverse-tbl">
           <tr v-for="item in issues" :key="item.Issue.ID">
@@ -32,6 +32,12 @@
             <td>{{ item.Issue.ProfName }}</td>
             <td>{{ getSpecialisationName(item.Specialisation) }}</td>
             <td>{{ item.Issue.Accuracy }}%</td>
+            <!-- Button to copy row data -->
+            <td>
+              <button class="copy-button" @click="copyRowData(item)">
+                <img src="../../public/imgs/icons8-copy.gif">
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -45,27 +51,27 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      'issues': [],
-      'api': 'https://healthservice.priaid.ch/diagnosis?symptoms=[]&gender=male&year_of_birth=26&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImlzYWFjLmFzaGVyOTcrMUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IjEwNDQxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiMTA5IiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9saW1pdCI6IjEwMCIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcCI6IkJhc2ljIiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9sYW5ndWFnZSI6ImVuLWdiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9leHBpcmF0aW9uIjoiMjA5OS0xMi0zMSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcHN0YXJ0IjoiMjAyMy0xMC0xOCIsImlzcyI6Imh0dHBzOi8vYXV0aHNlcnZpY2UucHJpYWlkLmNoIiwiYXVkIjoiaHR0cHM6Ly9oZWFsdGhzZXJ2aWNlLnByaWFpZC5jaCIsImV4cCI6MTY5NzYxMjM0OCwibmJmIjoxNjk3NjA1MTQ4fQ.c1X_SL7FUwhGzC7odI-lFSbHz7XqlOelTuoU9sQpKXo',
-      'symptomNumber': null,
-      'userAge': null,
-      'selectedGender': 'male',
-      'searchClicked': false, 
-    }
+      issues: [],
+      api: 'https://healthservice.priaid.ch/diagnosis?symptoms=[10]&gender=male&year_of_birth=26&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNvbnRhY3QuaXp6eXNob3dAZ21haWwuY29tIiwicm9sZSI6IlVzZXIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxMDQ0MyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMjMtMTAtMTgiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE2OTc2MTkwMTMsIm5iZiI6MTY5NzYxMTgxM30.RINibBiRyI66Zik1Cx_y3fE3ZrJkQmplgG2RPyGOGSI&format=json&language=en-gb',
+      symptomNumber: null,
+      userAge: null,
+      selectedGender: 'male',
+      searchClicked: false,
+    };
   },
   methods: {
     searchDiagnosis() {
       if (this.symptomNumber) {
         const ageQueryParam = this.userAge ? `&year_of_birth=${this.userAge}` : '';
-        const apiUrl = `https://healthservice.priaid.ch/diagnosis?symptoms=[${this.symptomNumber}]&gender=${this.selectedGender}${ageQueryParam}&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImlzYWFjLmFzaGVyOTcrMUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IjEwNDQxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiMTA5IiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9saW1pdCI6IjEwMCIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcCI6IkJhc2ljIiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9sYW5ndWFnZSI6ImVuLWdiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9leHBpcmF0aW9uIjoiMjA5OS0xMi0zMSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcHN0YXJ0IjoiMjAyMy0xMC0xOCIsImlzcyI6Imh0dHBzOi8vYXV0aHNlcnZpY2UucHJpYWlkLmNoIiwiYXVkIjoiaHR0cHM6Ly9oZWFsdGhzZXJ2aWNlLnByaWFpZC5jaCIsImV4cCI6MTY5NzYxMjM0OCwibmJmIjoxNjk3NjA1MTQ4fQ.c1X_SL7FUwhGzC7odI-lFSbHz7XqlOelTuoU9sQpKXo&format=json&language=en-gb`;
+        const apiUrl = `https://healthservice.priaid.ch/diagnosis?symptoms=[${this.symptomNumber}]&gender=${this.selectedGender}${ageQueryParam}&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNvbnRhY3QuaXp6eXNob3dAZ21haWwuY29tIiwicm9sZSI6IlVzZXIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxMDQ0MyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMjMtMTAtMTgiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE2OTc2MTkwMTMsIm5iZiI6MTY5NzYxMTgxM30.RINibBiRyI66Zik1Cx_y3fE3ZrJkQmplgG2RPyGOGSI&format=json&language=en-gb`;
 
-        axios.get(apiUrl)
-          .then(response => {
+        axios
+          .get(apiUrl)
+          .then((response) => {
             this.issues = response.data;
-            // Set searchClicked to true to show the table and data
             this.searchClicked = true;
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error);
           });
       }
@@ -74,12 +80,43 @@ export default {
       if (specialisation && specialisation.length > 0) {
         return specialisation[0].Name;
       } else {
-        return 'N/A'; // Display "N/A" if no specialisation data is available
+        return 'N/A';
       }
     },
-  }
-}
+    copyRowData(item) {
+      const rowData = `ID: ${item.Issue.ID}, Description: ${item.Issue.Name}, Diagnosis: ${item.Issue.ProfName}, Specialisation: ${this.getSpecialisationName(item.Specialisation)}, Accuracy: ${item.Issue.Accuracy}%`;
+
+      navigator.clipboard
+        .writeText(rowData)
+        .then(() => {
+          this.customAlert('Copied To Clipboard', 'success'); // Call the custom alert function
+        })
+        .catch((error) => {
+          this.customAlert('Error copying data', 'error'); // Call the custom alert function
+        });
+    },
+    customAlert(message, type) {
+      const alertDiv = document.createElement('div');
+      alertDiv.classList.add('custom-alert', type); // Apply custom styles based on 'type'
+
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = message;
+      alertDiv.appendChild(messageDiv);
+
+      const closeButton = document.createElement('button');
+      closeButton.textContent = 'Close';
+      closeButton.addEventListener('click', () => {
+        alertDiv.remove();
+      });
+      alertDiv.appendChild(closeButton);
+
+      document.body.appendChild(alertDiv);
+    },
+  },
+};
 </script>
+
+
 
 <style>
 .search-bar {
@@ -103,5 +140,43 @@ export default {
 .search-bar button {
     width: max-content;
     margin: 10px auto;
+}
+.copy-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+
+/* Custom alert styles */
+.custom-alert {
+  position: fixed;
+  top: 10px;
+  right: 0;
+  left: 0;
+  width: 20%;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.success {
+  background-color: #5cb85c; /* Green color for success */
+}
+
+.error {
+  background-color: #d9534f; /* Red color for error */
+}
+.copy-button img {
+    width: 30px;
 }
 </style>
