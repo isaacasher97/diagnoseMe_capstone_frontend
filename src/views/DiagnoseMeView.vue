@@ -1,6 +1,5 @@
 <template>
 <div class="dme-container">
-  <h1>This is the diagnose me page</h1>
   <DiagnoseMeApi/>
   <GetIssuesApi />
 </div>

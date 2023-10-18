@@ -105,6 +105,7 @@ export default {
 
       const closeButton = document.createElement('button');
       closeButton.textContent = 'Close';
+      closeButton.className = 'bn53';
       closeButton.addEventListener('click', () => {
         alertDiv.remove();
       });
@@ -167,16 +168,72 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 20px;
 }
 
 .success {
-  background-color: #5cb85c; /* Green color for success */
+  background-color: #2a2a72;
+  background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
 }
-
+.success button {
+  border-radius: 20px;
+}
+.success div {
+  font-weight: 900;
+  color: beige;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+}
 .error {
   background-color: #d9534f; /* Red color for error */
 }
 .copy-button img {
     width: 30px;
+}
+
+.bn53 {
+  background-color: #b81515;
+  padding: 7px;
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  animation: bn53bounce 4s infinite;
+  cursor: pointer;
+}
+
+@keyframes bn53bounce {
+  5%,
+  50% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(1) rotate(-5deg);
+  }
+
+  25% {
+    transform: scale(1) rotate(5deg);
+  }
+
+  30% {
+    transform: scale(1) rotate(-3deg);
+  }
+
+  35% {
+    transform: scale(1) rotate(2deg);
+  }
+
+  40% {
+    transform: scale(1) rotate(0);
+  }
 }
 </style>
