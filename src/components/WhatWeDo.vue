@@ -10,7 +10,7 @@
         <h5 class="card-text">Diagnose Me takes the struggle out of finding the right diagnosis when you're not feeling well 🤒<br><br></h5>
         <h5 class="card-text"> By using our services, visitors can access a page to search and receive a possible diagnosis by choosing their symptoms and submitting that form<br><br></h5>
         <h5 class="card-text">A visitor can also post, update, and delete their diagnosis and view it on a public feed page. Along with their own personal notes<br><br></h5>
-        <h5 class="card-text">Use ZocDoc to search to search for your nearest medical professional<br><br></h5>
+        <h5 class="card-text">Use ZocDoc to search for your nearest medical professional<br><br></h5>
         <h5 class="card-text">Whether you're interested in keeping track of your medical history, doctor visits, or simply want to check your symptoms or local medical professionals. Dianose Me is your go-to application for keeping your medical history in check.</h5>
       </div>
     </div>

@@ -20,7 +20,7 @@
       <label for="description">
         Description: <textarea type="text" id="description" placeholder="Describe diagnosis" v-model="currentDiagnosis.description" />
       </label>
-      <input type="submit" value="Update">
+      <input class="pst-btn" type="submit" value="Update">
     </form>
     </div>
   </div>
@@ -44,13 +44,13 @@
       <label for="description">
         Description: <textarea type="text" id="description" placeholder="Describe diagnosis" v-model="diagnosis.description" />
       </label>
-      <input type="submit" value="Create Post">
+      <input class="pst-btn" type="submit" value="Create">
     </form>
   </div>
   </div>
   <!-- List of diagnoses -->
   <div class="posts-table">
-    <h1>Latest Diagnoses</h1>
+    <h1 class="latest-heading">Latest Diagnoses</h1>
     <table class="table">
       <thead class="table-light">
         <th>Age</th>
@@ -60,7 +60,7 @@
         <th>Description</th>
         <th>Actions</th>
       </thead>
-      <tbody>
+      <tbody class="reverse-tbl">
         <tr v-for="item in diagnoses" :key="item.id">
           <td>{{ item.age }}</td>
           <td>{{ item.name }}</td>
@@ -163,5 +163,42 @@ export default {
 </script>
 
 <style>
+.create-diagnosis, .edit-diagnosis {
+  background-color: #1b2845;
+  background-image: linear-gradient(315deg, #1b2845 0%, #274060 74%);
+  color: antiquewhite;
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 20px;
+}
 
+.create-diagnosis form, .edit-diagnosis form {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.pst-btn {
+  width: 20%;
+  margin: 10px auto;
+
+}
+
+.latest-heading {
+  color: white;
+  margin-top: 10px;
+  padding: 10px;
+  text-decoration: underline;
+}
+.table {
+  width: max-content;
+  margin: 0 auto;
+  border: 5px solid black;
+}
 </style>

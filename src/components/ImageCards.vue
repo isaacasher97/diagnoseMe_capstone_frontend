@@ -1,7 +1,7 @@
 <template>
 <div class="card-container">
   <div class="card" style="width: 18rem;">
-  <img style="height: 24vh;" src="../../public/imgs/doctor-stethoscope.jpg" class="card-img-top" alt="...">
+  <img style="height: 25vh;" src="../../public/imgs/doctor-stethoscope.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Diagnose Me</h5>
     <p class="card-text">Use our intuitive form to get a possible diagnosis</p>
