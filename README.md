@@ -5,7 +5,7 @@
 - [**Frontend Source Code**](https://github.com/isaacasher97/diagnoseMe_capstone_frontend)
 - [**Deployed Backend Site**](https://diagnose-me-backend.onrender.com/diagnosis/)
 - [**Deployed Frontend Site**](https://diagnose-me-capstone-frontend.vercel.app/)
-- [**Jira Board**]()
+- [**Jira Board**](https://isaacasher.atlassian.net/jira/software/projects/CAP/boards/3)
 
 ## 🧑‍💻 Technologies 🧑‍💻
 
@@ -79,3 +79,13 @@ erDiagram
 npm install
 npm run serve
 ```
+## Future Enhacements
+
+- Make the book content more 3d and animated
+- User Auth for individual accounts
+- Public Feed Page with like and share and comment ability 
+- add profile pages for users
+-Meet with zoc doc to apply their api
+- implement zocdoc search for specialist available
+-create seperate login for patients and doctors alike
+- create dr profiles with rating system for doctor profiles
