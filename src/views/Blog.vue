@@ -20,7 +20,8 @@
       <label for="description">
         Description: <textarea type="text" id="description" placeholder="Describe diagnosis" v-model="currentDiagnosis.description" />
       </label>
-      <input class="pst-btn" type="submit" value="Update">
+      <input class="bn30" type="submit" value="Update">
+      <button class="bn30" @click="goBack">Go back</button>
     </form>
     </div>
   </div>
@@ -30,21 +31,21 @@
     <h2>Create Diagnosis</h2>
     <form @submit.prevent="saveBlog()">
       <label for="age">
-        Age: <input type="number" id="age" placeholder="Age of patient" v-model="diagnosis.age"> 
+        Age: <input type="number" id="age" placeholder="Age of patient" v-model="diagnosis.age" required> 
       </label>
       <label for="name">
-        Name: <input type="text" id="name" placeholder="Name Of Diagnosis" autocomplete="true" v-model="diagnosis.name">
+        Name: <input type="text" id="name" placeholder="Name Of Diagnosis" autocomplete="true" v-model="diagnosis.name" required>
       </label>
       <label for="practiceType">
-        Practice: <input type="text" id="practiceType" placeholder="Enter Practice Type" v-model="diagnosis.practiceType">
+        Practice: <input type="text" id="practiceType" placeholder="Enter Practice Type" v-model="diagnosis.practiceType" required>
       </label>
       <label for="specialist">
-        Specialist: <input type="text" id="specialist" placeholder="Enter specialist type" v-model="diagnosis.specialist">
+        Specialist: <input type="text" id="specialist" placeholder="Enter specialist type" v-model="diagnosis.specialist" required>
       </label>
       <label for="description">
         Description: <textarea type="text" id="description" placeholder="Describe diagnosis" v-model="diagnosis.description" />
       </label>
-      <input class="pst-btn" type="submit" value="Create">
+      <input class="bn30" type="submit" value="Create">
     </form>
   </div>
 </div>
@@ -158,6 +159,9 @@ export default {
         console.log(error)
       })
     },
+    goBack() {
+      return this.$router.go(-1)
+    },
   }
 }
 </script>
@@ -200,5 +204,52 @@ label {
   width: max-content;
   margin: 0 auto;
   border: 5px solid black;
+}
+
+.bn30 {
+  border: 5em;
+  cursor: pointer;
+  outline: none;
+  width: 30%;
+  margin: 10px auto;
+  font-size: 16px;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  padding: 0.7em 2em;
+  border-radius: 65px;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+  color: white;
+}
+
+.bn30 .text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+}
+
+.bn30:after {
+  content: "";
+  border-radius: 18px;
+  position: absolute;
+  margin: 4px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background: #0e0e10;
+}
+
+.bn30:hover {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+}
+
+.bn30:hover .text {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
 }
 </style>
