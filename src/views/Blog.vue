@@ -47,7 +47,7 @@
       <input class="pst-btn" type="submit" value="Create">
     </form>
   </div>
-  </div>
+</div>
   <!-- List of diagnoses -->
   <div class="posts-table">
     <h1 class="latest-heading">Latest Diagnoses</h1>
