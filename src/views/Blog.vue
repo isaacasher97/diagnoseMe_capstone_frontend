@@ -52,6 +52,7 @@
   <!-- List of diagnoses -->
   <div class="posts-table">
     <h1 class="latest-heading">Latest Diagnoses</h1>
+    <div v-if="diagnosed">
     <table class="table">
       <thead class="table-light">
         <th>Age</th>
@@ -75,6 +76,11 @@
         </tr>
       </tbody>
     </table>
+    </div>
+    <div v-else>
+      <h4>Data Loading</h4>
+      <img style="width: 50px;" src="../../public/imgs/icons8-loading.gif">
+    </div>
   </div>
 </div>
 </template>
@@ -88,6 +94,7 @@ export default {
       'diagnoses': [],
       'currentDiagnosis': {},
       'api': 'https://diagnose-me-backend.onrender.com/diagnosis/',
+      'diagnosed': null,
       'diagnosis': {
         'name': '',
         'age': '',
@@ -98,7 +105,10 @@ export default {
     }
   },
   mounted() {
-    console.log('DOM rendered')
+    fetch(this.api)
+    .then(res => res.json())
+    .then(data => this.diagnosed = data)
+    .catch(err => console.log(err.message))
   },
   created() {
     console.log('DOM is created')
