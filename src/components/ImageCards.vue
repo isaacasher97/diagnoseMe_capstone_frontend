@@ -17,11 +17,11 @@
   </div>
 </div>
 <div class="card" style="width: 18rem;">
-  <img src="../../public/imgs/propicmain.png" class="card-img-top" alt="...">
+  <img style="height: 18rem;" src="../../public/imgs/whoweare.jpeg" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">About The Developer</h5>
-    <p class="card-text">Learn More About the Developer Behind Diagnose Me</p>
-    <a  href="/about" class="bn632-hover bn26">View here</a>
+    <h5 class="card-title">About Us</h5>
+    <p class="card-text">Learn More About What Our Purpose Is</p>
+    <a  href="/about" class="bn632-hover bn26">Learn More</a>
   </div>
 </div>
 </div>
