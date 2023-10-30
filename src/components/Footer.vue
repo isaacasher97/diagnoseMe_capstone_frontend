@@ -18,10 +18,10 @@
         ><i class="fab fa-twitter"><img style="width: 50px;" src="../../public/imgs/titlelogo.jpeg"></i
       ></a>
 
-      <!-- Facebook -->
+      <!-- Facebook
       <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/profile.php?id=61550567973991" target="_blank" role="button"
         ><i class="fab fa-facebook-f"><img src="../../public/imgs/icons8-facebook.svg"></i
-      ></a>
+      ></a> -->
       <!-- Youtube -->
       <a class="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/channel/UCwJY7bkNpYwHXJ2RFV6c1Bw" target="_blank" role="button"
         ><i class="fab fa-instagram"><img src="../../public/imgs/icons8-youtube.svg"></i
@@ -30,11 +30,11 @@
     <!-- Section: Social media -->
 
     <!-- Section: Text -->
-    <section class="mb-4">
+    <!-- <section class="mb-4">
       <p>
         Created for the ability to help it's users search for and document their current symptoms and diagnoses, while also allowing a user to search for the right medical specialist
       </p>
-    </section>
+    </section> -->
     <!-- Section: Text -->
   </div>
   <!-- Grid container -->
