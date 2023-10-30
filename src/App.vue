@@ -44,7 +44,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 25rem;
+  margin-bottom: 11rem;
 }
 
 nav {
