@@ -4,17 +4,17 @@
   <!-- Grid container -->
   <div class="container p-4">
     <!-- Section: Social media -->
-    <section class="mb-4">
+    <section>
       <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/isaacasher97" target="_blank" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" style="border: none;" href="https://github.com/isaacasher97" target="_blank" role="button"
         ><i class="fab fa-github"><img src="../../public/imgs/icons8-github.svg"></i
       ></a>
       <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/in/isaac-ash/" target="_blank" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" style="border: none;" href="https://www.linkedin.com/in/isaac-ash/" target="_blank" role="button"
         ><i class="fab fa-linkedin-in"><img src="../../public/imgs/icons8-linkedin.svg"></i
       ></a>
       <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://isaacasher.dev/" target="_blank" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" style="border: none;" href="https://isaacasher.dev/" target="_blank" role="button"
         ><i class="fab fa-twitter"><img style="width: 50px;" src="../../public/imgs/titlelogo.jpeg"></i
       ></a>
 
@@ -23,7 +23,7 @@
         ><i class="fab fa-facebook-f"><img src="../../public/imgs/icons8-facebook.svg"></i
       ></a> -->
       <!-- Youtube -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/channel/UCwJY7bkNpYwHXJ2RFV6c1Bw" target="_blank" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" style="border: none;" href="https://www.youtube.com/channel/UCwJY7bkNpYwHXJ2RFV6c1Bw" target="_blank" role="button"
         ><i class="fab fa-instagram"><img src="../../public/imgs/icons8-youtube.svg"></i
       ></a>
     </section>
