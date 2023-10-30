@@ -259,7 +259,6 @@ label {
   border: 5em;
   cursor: pointer;
   outline: none;
-  width: 30%;
   margin: 10px auto;
   font-size: 16px;
   -webkit-transform: translate(0);
